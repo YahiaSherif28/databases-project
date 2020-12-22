@@ -95,6 +95,16 @@ create proc AdminViewCourseDetails
     where id = @courseId
 
 -- Exec AdminViewCourseDetails 1
+go
+create proc AdminAcceptRejectCourse
+    @adminId int,@courseId int
+    as
+    update Course
+    set Course.adminId = @adminId
+    ,Course.accepted = '1'
+    where Course.id = @courseId
+
+-- exec AdminAcceptRejectCourse 6,1
 
 go
 create proc AdminCreatePromocode
