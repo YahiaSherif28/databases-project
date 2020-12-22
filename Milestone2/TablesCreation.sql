@@ -1,4 +1,6 @@
-﻿
+﻿create database GUCeraDB
+go
+use GUCeraDB
 create table Users(
 id int primary key identity,
 firstName varchar(20),
@@ -107,7 +109,7 @@ sid int foreign key references Student on delete cascade on update cascade,
 cid int,
 assignmentNumber int,
 assignmentType varchar(10),
-grade decimal(10,2)
+grade decimal(10,2),
 primary key(sid, cid, assignmentNumber, assignmentType, grade),
 foreign key(cid, assignmentNumber, assignmentType) references Assignment(cid, number, type) on delete NO ACTION on update NO ACTION
 );

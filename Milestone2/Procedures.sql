@@ -1,4 +1,5 @@
-﻿
+﻿use GUCeraDB
+go
 create proc studentRegister
 @first_name varchar(20), @last_name varchar(20), @password varchar(20), @email varchar(50),
 @gender bit, @address varchar(10)
@@ -20,7 +21,7 @@ declare @id int
 SELECT @id = SCOPE_IDENTITY(); 
 insert into Instructor(id , rating) values (@id, 0);
 
--- Exec InstructorRegister 'abdo', 'khater', '123', 'abdo@gmail.com', 1, 'shrouq'
+ Exec InstructorRegister 'abdo', 'khater', '123', 'abdo@gmail.com', 1, 'shrouq'
 
 go
 create proc userLogin 
@@ -59,3 +60,72 @@ if exists(select * from Users where id = @ID)
 Exec addMobile 7, '0123456789'
 select * from UserMobileNumber;
 */
+
+go
+create proc AdminListInstr as
+select * from Instructor inner join Users on Instructor.id = Users.id
+
+-- Exec AdminListInstr
+
+go
+create proc AdminViewInstructorProfile
+@instrId int
+as
+    select * from Instructor inner join Users on Instructor.id = Users.id
+    where Instructor.id = @instrId
+
+-- Exec AdminViewInstructorProfile 5
+
+go
+create proc AdminViewAllCourses as
+    select * from Course
+
+-- Exec AdminViewAllCourses
+
+go
+create proc AdminViewNonAcceptedCourses as
+    select * from Course
+    where accepted = '0';
+
+-- Exec AdminViewNonAcceptedCourses
+
+go
+create proc AdminViewCourseDetails
+    @courseId int
+    as
+    select * from Course
+    where id = @courseId
+
+-- Exec AdminViewCourseDetails 1
+
+go
+create proc AdminCreatePromocode
+    @code varchar(6), @issueDate datetime, @expiryDate datetime, @discount decimal(4,2), @adminId int
+    as
+    insert into Promocode values (@code, @issueDate, @expiryDate, @discount, @adminId)
+
+-- EXEC AdminCreatePromocode '123456','20201222','20201222','24',6
+
+go
+create proc AdminListAllStudents as
+    select * from Users inner join Student on Users.id = Student.id
+
+-- exec AdminListAllStudents
+
+go
+create proc AdminViewStudentProfile
+    @sid int
+    as
+    select * from Users inner join Student on Users.id = Student.id
+    where Student.id = @sid
+
+-- exec AdminViewStudentProfile 7
+
+go
+create proc AdminIssuePromocodeToStudent
+    @sid int, @pid varchar(6)
+    as
+    insert into StudentHasPromocode values (@sid, @pid)
+
+-- exec AdminIssuePromocodeToStudent 1,'123456'
+
