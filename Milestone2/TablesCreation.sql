@@ -25,7 +25,7 @@ primary key(id, mobileNumber)
 
 create table Student(
 id int foreign key references Users on delete cascade on update cascade,
-gpa decimal(10,2) -- derived attribute -> add the equation
+gpa decimal(10,2), -- derived attribute -> add the equation
 primary key(id)
 );
 
@@ -100,7 +100,7 @@ sid int foreign key references Student on delete cascade on update cascade,
 cid int foreign key references Course on delete NO ACTION on update NO ACTION,
 instId int foreign key references Instructor on delete NO ACTION on update NO ACTION,
 payedfor bit,
-grade decimal(10,2)
+grade decimal(10,2),
 primary key(sid, cid, instId)
 );
 
