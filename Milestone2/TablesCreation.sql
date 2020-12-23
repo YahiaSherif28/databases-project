@@ -43,7 +43,7 @@ price decimal(6,2),
 content varchar(20),
 adminId int foreign key references Admin on delete cascade on update cascade,
 instructorId int foreign key references Instructor on delete NO ACTION on update NO ACTION,
-accepted bit
+accepted bit default 0
 );
 
 create table Assignment(
@@ -62,7 +62,7 @@ create table Feedback(
 cid int foreign key references Course on delete cascade on update cascade,
 number int identity,
 comments varchar(100),
-numberOfLikes int,
+numberOfLikes int default 0,
 sid int foreign key references Student on delete NO ACTION on update NO ACTION,
 primary key(cid, number)
 );
@@ -99,8 +99,8 @@ create table StudentTakeCourse(
 sid int foreign key references Student on delete cascade on update cascade,
 cid int foreign key references Course on delete NO ACTION on update NO ACTION,
 instId int foreign key references Instructor on delete NO ACTION on update NO ACTION,
-payedfor bit,
-grade decimal(10,2),
+payedfor bit default '0',
+grade decimal(10,2) default '0',
 primary key(sid, cid, instId)
 );
 
@@ -109,8 +109,8 @@ sid int foreign key references Student on delete cascade on update cascade,
 cid int,
 assignmentNumber int,
 assignmentType varchar(10),
-grade decimal(10,2),
-primary key(sid, cid, assignmentNumber, assignmentType, grade),
+grade decimal(10,2) default 0,
+primary key(sid, cid, assignmentNumber, assignmentType),
 foreign key(cid, assignmentNumber, assignmentType) references Assignment(cid, number, type) on delete NO ACTION on update NO ACTION
 );
 

@@ -292,8 +292,11 @@ exists(select * from Assignment where cid = @cid and number = @assignmentNumber 
 @grade >= 0 and @grade <= @fullGrade
 -- insert or update???????????
 begin
-	insert into StudentTakeAssignment(sid, cid, assignmentNumber, assignmentType, grade)
-	values(@sid, @cid, @assignmentNumber, @type, @grade)
+	-- insert into StudentTakeAssignment(sid, cid, assignmentNumber, assignmentType, grade)
+	-- values(@sid, @cid, @assignmentNumber, @type, @grade)
+	update StudentTakeAssignment 
+	set grade = @grade 
+	where sid = @sid and assignmentNumber = @assignmentNumber and assignmentType = @type
 end
 
 go
@@ -351,11 +354,75 @@ exec InstructorIssueCertificateToStudent 1, 5, 7, '10/10/2021'
 select * from StudentCertifyCourse
 */
 
+
+
+go
+create proc viewMyProfile
+@id int as
+select * from Users U inner join Student S on U.id = S.id 
+where U.id = @id 
+
+-- exec viewMyProfile 5
+
+go
+create proc editMyProfile
+@id int, @firstName varchar(10), @lastName varchar(10), @password varchar(10), @gender bit,
+@email varchar(10), @address varchar(10) as
+update Users 
+set firstName = ISNULL(@firstName, firstName),
+lastName = ISNULL(@lastName, lastName),
+password = ISNULL(@password, password),
+gender = ISNULL(@gender, gender),
+email = ISNULL(@email, email),
+address = ISNULL(@address, address)
+where id = @id
+
+/*
+exec editMyProfile 5,null, null, '555', null, null,null 
+select * from Users
+*/
+
+go
+create proc availableCourses as
+select name
+from Course
+where accepted = '1'
+
+-- exec availableCourses 
+
+go 
+create proc courseInformation
+@id int as
+select C.creditHours, C.name, C.courseDescription, I.firstName, I.lastName
+from Course C inner join Users I on C.instructorId = I.id
+
+exec courseInformation 1
+
+go 
+create proc enrollInCourse
+@sid INT, @cid INT, @instr int as
+insert into StudentTakeCourse(sid, cid, instId) values(@sid, @cid, @instr)
+
+
+go
+create proc addCreditCard
+@sid int, @number varchar(15), @cardHolderName varchar(16), @expiryDate datetime, @cvv varchar(3) as
+insert into CreditCard(number, cardHolderName, expiryDate, cvv) 
+values(@number, @cardHolderName, @expiryDate, @cvv)
+insert into StudentAddCreditCard(sid, creditCardNumber) values(@sid, @number)
+
+/*
+exec addCreditCard 5, '1234567', 'Omar', '12/12/2020','111'
+select * from CreditCard
+*/
+
 go
 create proc viewPromocode
 @sid int as
-select * from Promocode where @sid =adminId
+select * from Promocode P inner join StudentHasPromocode SP on P.code = SP.code
+where SP.sid = @sid
 
+exec viewPromocode 5
 
 /*insert into	Users values('a', 'b', '123', 1, 'asd', 'asd');
 declare @id int = SCOPE_IDENTITY();
@@ -364,6 +431,7 @@ insert into admin(id ) values (@id)
 select * from admin
 exec AdminCreatePromocode '123',2020 ,2021,1.2,1
 exec viewPromocode 1*/
+
 
 go
 create proc payCourse
@@ -404,12 +472,12 @@ end
 go
 create proc viewAssignGrades
 @assignnumber int, @assignType VARCHAR(10), @cid INT, @sid INT , @assignGrade INT output as
-select grade from StudentTakeAssignment where @cid = cid and @sid = sid and @assignnumber = assignmentNumber and @assignType = assignmentType
+select @assignGrade = grade from StudentTakeAssignment where @cid = cid and @sid = sid and @assignnumber = assignmentNumber and @assignType = assignmentType
 
 go
 create proc viewFinalGrade
-@cid INT, @sid INT , @finalgrade decimal(10,2) as
-select grade from StudentTakeCourse where @cid = cid and @sid =sid
+@cid INT, @sid INT , @finalgrade decimal(10,2), @finalgrade decimal(10,2) output as
+select @finalgrade = grade from StudentTakeCourse where @cid = cid and @sid =sid
 
 go
 create  proc addFeedback
