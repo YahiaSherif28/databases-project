@@ -6,7 +6,7 @@ create proc studentRegister
 as
 insert into	Users values(@first_name, @last_name, @password, @gender, @email, @address);
 declare @id int = SCOPE_IDENTITY(); 
-insert into Student(id ,gpa) values (@id, 0) 
+insert into Student(id ,gpa) values (@id, 0)
 
 -- Exec studentRegister 'omar', 'khair', '123', 'abc@gmail.com', 1, 'nowhere'
 
@@ -19,7 +19,7 @@ insert into	Users values(@first_name, @last_name, @password, @gender, @email, @a
 declare @id int = SCOPE_IDENTITY(); 
 insert into Instructor(id , rating) values (@id, 0);
 
- Exec InstructorRegister 'abdo', 'khater', '123', 'abdo@gmail.com', 1, 'shrouq'
+ --Exec InstructorRegister 'abdo', 'khater', '123', 'abdo@gmail.com', 1, 'shrouq'
 
 go
 create proc userLogin 
@@ -350,3 +350,85 @@ end
 exec InstructorIssueCertificateToStudent 1, 5, 7, '10/10/2021'
 select * from StudentCertifyCourse
 */
+
+go
+create proc viewPromocode
+@sid int as
+select * from Promocode where @sid =adminId
+
+
+/*insert into	Users values('a', 'b', '123', 1, 'asd', 'asd');
+declare @id int = SCOPE_IDENTITY();
+insert into admin(id ) values (@id)
+
+select * from admin
+exec AdminCreatePromocode '123',2020 ,2021,1.2,1
+exec viewPromocode 1*/
+
+go
+create proc payCourse
+@cid INT, @sid INT as
+if exists (select * from StudentTakeCourse where @cid = cid and @sid = sid)
+begin
+     update StudentTakeCourse
+    set StudentTakeCourse.payedfor = '1'
+    where StudentTakeCourse.cid = @cid and StudentTakeCourse.sid = @sid
+end
+
+go
+create proc enrollInCourseViewContent
+@id int , @cid int as
+if exists (select * from StudentTakeCourse where @id = sid and @cid = cid )
+begin
+    select * from course where @cid =id
+end
+
+
+go
+create proc viewAssign
+@courseid int, @sid int as
+if exists(select * from StudentTakeCourse where @courseid = cid and @sid = sid)
+begin
+    select * from Assignment where @courseid = cid
+end
+
+
+go
+create proc submitAssign
+@assignType VARCHAR(10), @assignnumber int, @sid INT, @cid INT as
+if exists(select * from StudentTakeCourse where @cid = cid and @sid = sid)
+begin
+    insert into	StudentTakeAssignment values(@sid, @cid, @assignnumber, @assignType, 0.0);
+end
+
+go
+create proc viewAssignGrades
+@assignnumber int, @assignType VARCHAR(10), @cid INT, @sid INT , @assignGrade INT output as
+select grade from StudentTakeAssignment where @cid = cid and @sid = sid and @assignnumber = assignmentNumber and @assignType = assignmentType
+
+go
+create proc viewFinalGrade
+@cid INT, @sid INT , @finalgrade decimal(10,2) as
+select grade from StudentTakeCourse where @cid = cid and @sid =sid
+
+go
+create  proc addFeedback
+@comment VARCHAR(100), @cid INT, @sid INT as
+if exists(select * from StudentTakeCourse where @cid = cid and @sid = sid )
+begin
+    insert into Feedback(cid ,comments,sid) values (@cid, @comment,@sid)
+end
+
+go
+create proc rateInstructor
+@rate DECIMAL (2,1), @sid INT, @insid INT as
+if exists(select * from StudentTakeCourse where @insid = instId and @sid = sid )
+begin
+insert into StudentRateInstructor values (@sid, @insid, @rate)
+end
+
+go
+create proc viewCertificate
+@cid INT, @sid INT as
+select * from StudentCertifyCourse where sid= @sid and cid = @cid
+
