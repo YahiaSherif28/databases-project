@@ -14,7 +14,11 @@ namespace GUCera
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["loginMsg"] != null)
+            {
+                Response.Write(Session["loginMsg"]);
+                Session["loginMsg"] = null;
+            }
         }
 
         protected void login(object sender, EventArgs e)
@@ -44,8 +48,9 @@ namespace GUCera
             if (success.Value.ToString() == "1")
             {
                 Session["user"] = id;
+                Session["type"] = type.Value.ToString();
                 //Response.Write("Hello");
-                //Response.Redirect("courses.aspx");
+                Response.Redirect("MyProfile.aspx");
             } else {
                 Response.Write("User Not Found");
             }

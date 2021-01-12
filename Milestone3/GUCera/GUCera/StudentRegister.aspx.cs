@@ -42,7 +42,8 @@ namespace GUCera
             }
             catch (SqlException ee)
             {
-                Response.Write("Email Already Exists");
+                // Response.Write("Email Already Exists");
+                Response.Write(ee.Message);
                 conn.Close();
                 return;
             }
