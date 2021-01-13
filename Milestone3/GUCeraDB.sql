@@ -11,7 +11,7 @@ id int IDENTITY PRIMARY KEY,
 firstName varchar(10),
 lastName varchar(10),
 password varchar(10),
-gender binary,
+gender bit,
 email varchar(10) UNIQUE,
 address varchar(10),
 );
@@ -561,7 +561,7 @@ CREATE PROC editMyProfile
 @firstName varchar(10),
 @lastName varchar(10),
 @password varchar(10),
-@gender binary,
+@gender bit,
 @email varchar(10),
 @address varchar(10)
 AS
@@ -586,7 +586,7 @@ go
 
 CREATE PROC availableCourses
 AS
-SELECT Course.name FROM Course LEFT OUTER JOIN StudentTakeCourse ON Course.id = StudentTakeCourse.cid 
+SELECT Course.id, Course.name FROM Course LEFT OUTER JOIN StudentTakeCourse ON Course.id = StudentTakeCourse.cid 
 LEFT OUTER JOIN Student ON StudentTakeCourse.sid = Student.id
 WHERE Course.accepted = '1' AND StudentTakeCourse.sid IS NULL
 go
@@ -781,3 +781,23 @@ set payedfor =1
 where  cid = @cid and  sid=@sid
 
 END
+
+-- New Procedures
+Go
+create proc InstructorsOfACourse
+@cid int
+as
+begin
+select U.id, U.firstName, U.lastName from InstructorTeachCourse T inner join Users U on T.insid = U.id 
+where T.cid = @cid;
+end
+
+Go
+create proc studentCreditCards
+@sid int
+as
+begin
+select CC.* from CreditCard CC inner join StudentAddCreditCard SCC 
+on CC.number = SCC.creditCardNumber
+where SCC.sid = @sid
+end
