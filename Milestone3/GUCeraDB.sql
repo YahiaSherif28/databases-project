@@ -1,4 +1,4 @@
-﻿create DATABASE GUCera;
+create DATABASE GUCera;
 
 Go 
 
@@ -116,7 +116,6 @@ grade decimal(5,2),
 Check (grade between 0 and 100),
 PRIMARY KEY (sid, cid, insid) 
 );
-
 
 
 CREATE TABLE StudentTakeAssignment(
@@ -432,7 +431,7 @@ Insert into Assignment values (@cid ,@number,@type,@fullGrade,@weight ,@deadline
 go
 
 --- 7 Instructor view his profile  ----
-create Proc ViewInstructorProfile 
+CREATE Proc ViewInstructorProfile 
 @instrId int
 As
 Select u.firstName, u.lastName, u.gender, u.email, u.address, i.rating, im.mobileNumber
@@ -442,7 +441,6 @@ WHERE i.id=@instrId
 go
 
 --- 8 Instructor view assignments of his students  ----
-
 --- i deleted the cid from the input so that the instructor can see the assignments of all courses---
 
 Create Proc InstructorViewAssignmentsStudents
@@ -587,9 +585,9 @@ ELSE
 print 'User not found'
 go
 
-CREATE PROC availableCourses
+create PROC availableCourses
 AS
-SELECT Course.id, Course.name FROM Course LEFT OUTER JOIN StudentTakeCourse ON Course.id = StudentTakeCourse.cid 
+SELECT Course.name FROM Course LEFT OUTER JOIN StudentTakeCourse ON Course.id = StudentTakeCourse.cid 
 LEFT OUTER JOIN Student ON StudentTakeCourse.sid = Student.id
 WHERE Course.accepted = '1' AND StudentTakeCourse.sid IS NULL
 go
@@ -805,6 +803,16 @@ on CC.number = SCC.creditCardNumber
 where SCC.sid = @sid
 end
 
+go
+
+CREATE PROC newAvailableCourses
+@sid int
+AS
+SELECT id, name FROM Course 
+except
+Select C.id, C.name from Course C inner join StudentTakeCourse STC on C.id = STC.cid
+where STC.sid = @sid;
+
 Go
 create proc allStudentCourses
 @sid int
@@ -816,3 +824,4 @@ on Course.id = StudentTakeCourse.cid
 where StudentTakeCourse.sid = @sid
 end
 exec allStudentCourses '2'
+
