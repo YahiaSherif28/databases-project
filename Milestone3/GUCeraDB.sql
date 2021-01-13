@@ -293,23 +293,18 @@ UPDATE Course
 SET accepted = 1 , adminId=@adminid
 Where id = @courseId
 
+
+
 Go
 --- 7 Create new Promo codes by inserting all promo code detail ---
-CREATE Proc AdminCreatePromocode
+create Proc AdminCreatePromocode
 @code varchar(6),
-@isuueDate datetime,
+@issueDate datetime,
 @expiryDate datetime,
 @discount decimal(4,2),
 @adminId int
 As
-IF @code is Null or
-@isuueDate is Null or 
-@expiryDate is Null or
-@discount is Null or
-@adminId is Null
-Print 'Cannot create promocode'
-Else
-Insert into Promocode Values(@code,@isuueDate,@expiryDate,@discount,@adminId)
+Insert into Promocode Values(@code,@issueDate,@expiryDate,@discount,@adminId)
 
 Go
 

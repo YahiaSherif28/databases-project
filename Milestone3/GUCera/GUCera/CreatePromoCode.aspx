@@ -19,13 +19,9 @@
         <br/>
         <asp:TextBox ID="code" runat="server"></asp:TextBox>
         <br/>
-        <asp:Label ID="Label3" runat="server" Text="Issue Date"></asp:Label>
-        <br/>
-        <asp:TextBox ID="issueDate" runat="server" TextMode="Date"></asp:TextBox>
-        <br/>
         <asp:Label ID="Label4" runat="server" Text="Expiry Date"></asp:Label>
         <br/>
-        <asp:TextBox ID="expiryDate" runat="server" TextMode="Date"></asp:TextBox>
+            <asp:TextBox ID="expiryDate" runat="server" textmode="Date" ></asp:TextBox>
         <br/>
         <asp:Label ID="Label5" runat="server" Text="Discount"></asp:Label>
         <br/>
