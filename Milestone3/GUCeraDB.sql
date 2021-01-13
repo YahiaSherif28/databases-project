@@ -118,6 +118,7 @@ PRIMARY KEY (sid, cid, insid)
 );
 
 
+
 CREATE TABLE StudentTakeAssignment(
 sid int REFERENCES Student(id) on DELETE CASCADE on UPDATE CASCADE,
 cid int, 
@@ -431,7 +432,7 @@ Insert into Assignment values (@cid ,@number,@type,@fullGrade,@weight ,@deadline
 go
 
 --- 7 Instructor view his profile  ----
-CREATE Proc ViewInstructorProfile 
+create Proc ViewInstructorProfile 
 @instrId int
 As
 Select u.firstName, u.lastName, u.gender, u.email, u.address, i.rating, im.mobileNumber
@@ -442,13 +443,14 @@ go
 
 --- 8 Instructor view assignments of his students  ----
 
-CREATE Proc InstructorViewAssignmentsStudents
-@instrId int,
-@cid int 
+--- i deleted the cid from the input so that the instructor can see the assignments of all courses---
+
+Create Proc InstructorViewAssignmentsStudents
+@instrId int
 As
 Select sid ,cid,assignmentNumber, assignmenttype, grade
 From StudentTakeAssignment S inner join course c on s.cid = c.id
-Where cid=@cid and c.instructorId =@instrId
+Where c.instructorId =@instrId
 go
 
 --- 9 Instructor grade the assignemnt submitted by the student  ----
@@ -469,14 +471,15 @@ where sid=@sid and cid=@cid and assignmentNumber=@assignmentNumber and assignmen
 go
 
 --- 10 View feedbacks added by students on my course  ----
+--- i deleted the cid from the input and put it to the output so that the instructor can see the feedbacks of all courses---
 
-CREATE Proc ViewFeedbacksAddedByStudentsOnMyCourse 
-@instrId int,
-@cid int
+
+create Proc ViewFeedbacksAddedByStudentsOnMyCourse 
+@instrId int
 As
-Select number,comment ,numberOfLikes
+Select cid, number,comment ,numberOfLikes
 From Feedback f inner join course c on c.id = f.cid
-Where cid=@cid and instructorId =@instrId 
+Where instructorId =@instrId 
 go
 
 CREATE Proc updateInstructorRate   
@@ -663,11 +666,12 @@ WHERE Us.id = @id and c.id=@cid
 ELSE
 print 'not a user'
 END
+
 go
 
 CREATE PROC viewAssign
 @courseId int,
-@Sid int
+@Sid VARCHAR(10)
 AS
 BEGIN
 IF (EXISTS(SELECT * FROM Users WHERE id=@Sid))
@@ -775,7 +779,7 @@ CREATE PROC payCourse
 AS
 BEGIN
 IF (EXISTS(SELECT * FROM StudentHasPromoCode WHERE sid = @sid ))
-update studenStudentTakeCourse
+update StudentTakeCourse
 set payedfor =1
 where  cid = @cid and  sid=@sid
 
@@ -800,16 +804,3 @@ select CC.* from CreditCard CC inner join StudentAddCreditCard SCC
 on CC.number = SCC.creditCardNumber
 where SCC.sid = @sid
 end
-
-Go
-create proc allStudentCourses
-@sid int
-as
-begin
-select Course.id, Course.name
-from Course inner join StudentTakeCourse
-on Course.id = StudentTakeCourse.cid
-where StudentTakeCourse.sid = @sid
-end
-
-exec allStudentCourses '2'
