@@ -1,3 +1,4 @@
+
 create DATABASE GUCera;
 
 Go 

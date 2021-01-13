@@ -71,6 +71,7 @@
     <Content Include="addMobile.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="CreatePromoCode.aspx" />
+    <Content Include="InstructorProfile.aspx" />
     <Content Include="InstructorRegister.aspx" />
     <Content Include="ListAllCourses.aspx" />
     <Content Include="ListNonAcceptedCourses.aspx" />
@@ -108,6 +109,13 @@
     </Compile>
     <Compile Include="CreatePromoCode.aspx.designer.cs">
       <DependentUpon>CreatePromoCode.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InstructorProfile.aspx.cs">
+      <DependentUpon>InstructorProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InstructorProfile.aspx.designer.cs">
+      <DependentUpon>InstructorProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="InstructorRegister.aspx.cs">
       <DependentUpon>InstructorRegister.aspx</DependentUpon>

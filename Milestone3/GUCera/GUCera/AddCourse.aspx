@@ -59,7 +59,7 @@
                 </asp:GridView>
                         <asp:Label ID="message" runat="server" Font-Bold="True" ForeColor="#1C5E55"></asp:Label>
             </div>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:GUCera %>" SelectCommand="availableCourses" SelectCommandType="StoredProcedure"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:GUCeraConnectionString %>" SelectCommand="availableCourses" SelectCommandType="StoredProcedure"></asp:SqlDataSource>
         </div>
 
         <div style ="padding: 10px" id="chosendiv" runat="server" visible ="false">
@@ -110,7 +110,7 @@
                     <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
                     <RowStyle BackColor="#E3EAEB" />
                 </asp:FormView>
-                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:GUCera %>" SelectCommand="courseInformation" SelectCommandType="StoredProcedure">
+                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:GUCeraConnectionString %>" SelectCommand="courseInformation" SelectCommandType="StoredProcedure">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="chosenID" Name="id" PropertyName="Text" Type="Int32" />
                     </SelectParameters>
@@ -147,7 +147,7 @@
                     <SortedDescendingHeaderStyle BackColor="#15524A" />
                 </asp:GridView>
                 </div>
-                <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:GUCera %>" SelectCommand="InstructorsOfACourse" SelectCommandType="StoredProcedure">
+                <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:GUCeraConnectionString %>" SelectCommand="InstructorsOfACourse" SelectCommandType="StoredProcedure">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="chosenID" Name="cid" PropertyName="Text" Type="Int32" />
                     </SelectParameters>
