@@ -31,7 +31,7 @@ namespace GUCera
             {
                 string codeValue = code.Text;
                 DateTime expiryDateValue = Convert.ToDateTime(expiryDate.Text);
-                DateTime issueDateValue = DateTime.Now;
+                DateTime issueDateValue = DateTime.Today;
                 double discountValue = double.Parse(discount.Text);
 
                 string adminId = Session["user"].ToString();
@@ -42,7 +42,7 @@ namespace GUCera
                 proc.Parameters.Add(new SqlParameter("@issueDate", issueDateValue));
                 proc.Parameters.Add(new SqlParameter("@expiryDate", expiryDateValue));
                 proc.Parameters.Add(new SqlParameter("@discount", discountValue));
-                proc.Parameters.Add(new SqlParameter("@adminId", adminId));
+                proc.Parameters.Add(new SqlParameter("@adminId", Convert.ToInt32(adminId)));
 
                 conn.Open();
                 proc.ExecuteNonQuery();
