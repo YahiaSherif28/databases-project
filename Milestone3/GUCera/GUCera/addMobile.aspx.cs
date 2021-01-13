@@ -42,7 +42,6 @@ namespace GUCera
             conn.Close();
 
             Response.Write("Phone Added Successfully");
-            
         }
     }
 }

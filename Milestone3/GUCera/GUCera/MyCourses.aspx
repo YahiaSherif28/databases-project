@@ -39,7 +39,7 @@
             </asp:Table>
         </div>
     
-        <div runat="server" id="feedbackDiv">
+        <div runat="server" id="feedbackDiv" style="position:absolute; left:500px">
             <asp:Label ID="Label2" runat="server"></asp:Label>
             <br />
             <asp:TextBox ID="TextBox2" runat="server" Height="25px"></asp:TextBox>

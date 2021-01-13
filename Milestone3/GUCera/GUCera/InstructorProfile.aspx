@@ -155,6 +155,9 @@
                     </table>
                                 <asp:LinkButton ID="FeedbacksLinkButton" runat="server" Text="View Feedbacks" style="padding:4px" BackColor="#1C5E55" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" Font-Bold="True" Font-Size="Medium" Font-Underline="False" ForeColor="White" Width="254px" Font-Names="Arial" OnClick="ViewFeedBackButton_Click"  Height="25px"/>
                                 <asp:LinkButton ID="IssueCertificateLinkButton" runat="server" Text="Issue Certificate" style="padding:4px" BackColor="#1C5E55" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" Font-Bold="True" Font-Size="Medium" Font-Underline="False" ForeColor="White" Width="254px" Font-Names="Arial" OnClick="IssueCertificate_Click"  Height="25px"/>
+                    <br />
+            <asp:Button ID="Button1" runat="server" OnClick="addMobile" Text="Add Mobile" />
+                    <br />
                 </div>
             </div>
             <div class ="container" runat ="server" id="addCourseDiv" visible ="false" >
@@ -340,7 +343,7 @@
                         <div class="auto-style14">
                             <asp:Label ID="Label5" runat="server" Font-Bold="True" Font-Size="Large" ForeColor="#1C5E55">Feedbacks</asp:Label>
                         </div>
-                        <asp:GridView ID="GridView4" runat="server" align="center" AutoGenerateColumns="False" CellPadding="4" DataSourceID="FeedbackDataSource" ForeColor="#333333" ShowHeaderWhenEmpty="True" Width="500px" EmptyDataText="No data available" DataKeyNames="code">
+                        <asp:GridView ID="GridView4" runat="server" align="center" AutoGenerateColumns="False" CellPadding="4" DataSourceID="FeedbackDataSource" ForeColor="#333333" ShowHeaderWhenEmpty="True" Width="500px" EmptyDataText="No data available">
                             <AlternatingRowStyle BackColor="White" />
                             <Columns>
                                 <asp:BoundField DataField="cid" HeaderText="Course ID" ReadOnly="True" SortExpression="cid" />

@@ -51,6 +51,10 @@ namespace GUCera
                 Session["type"] = type.Value.ToString();
                 if(type.Value.ToString() == "2") //Student
                     Response.Redirect("Home.aspx");
+                else if(type.Value.ToString() == "1") //Admin
+                    Response.Redirect("Admin.aspx");
+                else if(type.Value.ToString() == "0") //Instructor
+                    Response.Redirect("InstructorProfile.aspx");
             } else {
                 Response.Write("User Not Found");
             }

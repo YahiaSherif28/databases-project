@@ -263,10 +263,11 @@ From Course
 go
 
 
+
 --- 4 List all the courses added by instructors not yet accepted ----
 CREATE Proc AdminViewNonAcceptedCourses
 As
-Select name, creditHours, price, content
+Select id, name, creditHours, price, content
 From Course
 Where accepted = 0 or accepted is null
 
