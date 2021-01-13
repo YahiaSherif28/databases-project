@@ -663,12 +663,11 @@ WHERE Us.id = @id and c.id=@cid
 ELSE
 print 'not a user'
 END
-
 go
 
 CREATE PROC viewAssign
 @courseId int,
-@Sid VARCHAR(10)
+@Sid int
 AS
 BEGIN
 IF (EXISTS(SELECT * FROM Users WHERE id=@Sid))
@@ -801,3 +800,16 @@ select CC.* from CreditCard CC inner join StudentAddCreditCard SCC
 on CC.number = SCC.creditCardNumber
 where SCC.sid = @sid
 end
+
+Go
+create proc allStudentCourses
+@sid int
+as
+begin
+select Course.id, Course.name
+from Course inner join StudentTakeCourse
+on Course.id = StudentTakeCourse.cid
+where StudentTakeCourse.sid = @sid
+end
+
+exec allStudentCourses '2'

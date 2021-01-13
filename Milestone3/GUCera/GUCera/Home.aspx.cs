@@ -16,60 +16,27 @@ namespace GUCera
         private static SqlConnection conn = new SqlConnection(connStr);
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["user"] == null)
+            if (Session["user"] == null || Convert.ToInt32(Session["type"]) != 2)
             {
                 Session["loginMsg"] = "Login to Access Your Home Page";
                 Response.Redirect("Login.aspx");
 
             }
-            if (Session["enrollMsg"] != null)
-            {
-                message.Text = (String)Session["enrollMsg"];
-                Session["enrollMsg"] = null;
-            }
-
-            SqlCommand allcourses = new SqlCommand("availableCourses", conn);
-            allcourses.CommandType = CommandType.StoredProcedure;
-            conn.Open();
-            SqlDataAdapter adapter = new SqlDataAdapter(allcourses);
-            DataTable table = new DataTable();
-            adapter.Fill(table);
-            coursesList.DataSource = table;
-            coursesList.DataBind();
-            conn.Close();
         }
 
-        protected void moreDetails_Click(object sender, EventArgs e)
+        protected void profileButton(object sender, EventArgs e)
         {
-            int cid = Convert.ToInt32((sender as LinkButton).CommandArgument);
-            chosenID.Text = cid.ToString();
-            chosendiv.Visible = true;
+            Response.Redirect("MyProfile.aspx");
         }
-        protected void enroll_Click(object sender, EventArgs e)
-        {
-            int instid = Convert.ToInt32((sender as LinkButton).CommandArgument);
-            int cid = Convert.ToInt32(chosenID.Text);
-            int sid = (System.Int32)(Session["user"]);
-            SqlCommand enrollInCourse = new SqlCommand("enrollInCourse", conn);
-            enrollInCourse.CommandType = CommandType.StoredProcedure;
-            enrollInCourse.Parameters.Add(new SqlParameter("@sid", sid));
-            enrollInCourse.Parameters.Add(new SqlParameter("@cid", cid));
-            enrollInCourse.Parameters.Add(new SqlParameter("@instr", instid));
 
-            try
-            {
-                conn.Open();
-                enrollInCourse.ExecuteNonQuery();
-                conn.Close();
-            }
-            catch (Exception ee)
-            {
-                Response.Write(ee.Message);
-                conn.Close();
-                return;
-            }
-            Session["enrollMsg"] = "Enrolled in Course Successfully!";
-            Response.Redirect(Request.RawUrl);
+        protected void myCoursesButton(object sender, EventArgs e)
+        {
+            Response.Redirect("MyCourses.aspx");
+        }
+
+        protected void addCoursesButton(object sender, EventArgs e)
+        {
+            Response.Redirect("AddCourse.aspx");
         }
     }
 }

@@ -16,7 +16,7 @@ namespace GUCera
         private static SqlConnection conn = new SqlConnection(connStr);
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["user"] == null)
+            if (Session["user"] == null || Convert.ToInt32(Session["type"]) != 2)
             {
                 Session["loginMsg"] = "Login to access your profile";
                 Response.Redirect("Login.aspx");
