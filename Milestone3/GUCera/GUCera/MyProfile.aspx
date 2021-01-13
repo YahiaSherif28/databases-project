@@ -63,7 +63,7 @@
                 </h2>
             </div>
             <div>
-                <asp:SqlDataSource ID="ProfileDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:GUCeraConnectionString %>" SelectCommand="viewMyProfile" SelectCommandType="StoredProcedure">
+                <asp:SqlDataSource ID="ProfileDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:GUCera %>" SelectCommand="viewMyProfile" SelectCommandType="StoredProcedure">
                     <SelectParameters>
                         <asp:SessionParameter DefaultValue="" Name="id" SessionField="user" Type="Int32" />
                     </SelectParameters>
@@ -199,7 +199,7 @@
                         </asp:GridView>
                     </div>
 
-                    <asp:SqlDataSource ID="mobileDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:GUCeraConnectionString %>" SelectCommand="SELECT [mobileNumber] FROM [UserMobileNumber] WHERE ([id] = @id)">
+                    <asp:SqlDataSource ID="mobileDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:GUCera %>" SelectCommand="SELECT [mobileNumber] FROM [UserMobileNumber] WHERE ([id] = @id)">
                         <SelectParameters>
                             <asp:SessionParameter Name="id" SessionField="user" Type="Int32" />
                         </SelectParameters>
@@ -255,7 +255,7 @@
                             <SortedDescendingHeaderStyle BackColor="#15524A" />
                         </asp:GridView>
                     </div>
-                      <asp:SqlDataSource ID="creditCardDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:GUCeraConnectionString %>" SelectCommand="studentCreditCards" SelectCommandType="StoredProcedure">
+                      <asp:SqlDataSource ID="creditCardDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:GUCera %>" SelectCommand="studentCreditCards" SelectCommandType="StoredProcedure">
                         <SelectParameters>
                             <asp:SessionParameter Name="sid" SessionField="user" Type="Int32" />
                         </SelectParameters>
@@ -328,7 +328,7 @@
                         </asp:GridView>
                     </div>
 
-                    <asp:SqlDataSource ID="PromoDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:GUCeraConnectionString %>" SelectCommand="viewPromocode" SelectCommandType="StoredProcedure">
+                    <asp:SqlDataSource ID="PromoDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:GUCera %>" SelectCommand="viewPromocode" SelectCommandType="StoredProcedure">
                         <SelectParameters>
                             <asp:SessionParameter Name="sid" SessionField="user" Type="Int32" />
                         </SelectParameters>
