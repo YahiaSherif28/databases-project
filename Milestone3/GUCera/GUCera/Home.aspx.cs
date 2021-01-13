@@ -27,16 +27,6 @@ namespace GUCera
                 message.Text = (String)Session["enrollMsg"];
                 Session["enrollMsg"] = null;
             }
-
-            SqlCommand allcourses = new SqlCommand("availableCourses", conn);
-            allcourses.CommandType = CommandType.StoredProcedure;
-            conn.Open();
-            SqlDataAdapter adapter = new SqlDataAdapter(allcourses);
-            DataTable table = new DataTable();
-            adapter.Fill(table);
-            coursesList.DataSource = table;
-            coursesList.DataBind();
-            conn.Close();
         }
 
         protected void moreDetails_Click(object sender, EventArgs e)

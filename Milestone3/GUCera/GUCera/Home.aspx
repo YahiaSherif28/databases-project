@@ -28,12 +28,6 @@
         </div>
         <div style ="padding: 10px">
                 <asp:Label ID="Label2" runat="server" CssClass="auto-style2" ForeColor="#1C5E55" Text="Available Courses:"></asp:Label>
-            <asp:GridView ID="coursesList" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="True">
-                <Columns>
-                    <asp:BoundField DataField="id" HeaderText="Course ID" />
-                    <asp:BoundField DataField="name" HeaderText="Name" />
-                </Columns>
-            </asp:GridView>
             <div class="auto-style3">
                 <asp:GridView ID="GridView1" align="center" runat="server" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="id" DataSourceID="SqlDataSource1" ForeColor="#333333" ShowHeaderWhenEmpty="True">
                     <AlternatingRowStyle BackColor="White" />
@@ -59,7 +53,11 @@
                 </asp:GridView>
                         <asp:Label ID="message" runat="server" Font-Bold="True" ForeColor="#1C5E55"></asp:Label>
             </div>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:GUCeraConnectionString %>" SelectCommand="availableCourses" SelectCommandType="StoredProcedure"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:GUCeraConnectionString %>" SelectCommand="newAvailableCourses" SelectCommandType="StoredProcedure">
+                <SelectParameters>
+                    <asp:SessionParameter Name="sid" SessionField="user" Type="Int32" />
+                </SelectParameters>
+                </asp:SqlDataSource>
         </div>
 
         <div style ="padding: 10px" id="chosendiv" runat="server" visible ="false">

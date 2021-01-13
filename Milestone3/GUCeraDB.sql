@@ -584,9 +584,9 @@ ELSE
 print 'User not found'
 go
 
-CREATE PROC availableCourses
+create PROC availableCourses
 AS
-SELECT Course.id, Course.name FROM Course LEFT OUTER JOIN StudentTakeCourse ON Course.id = StudentTakeCourse.cid 
+SELECT Course.name FROM Course LEFT OUTER JOIN StudentTakeCourse ON Course.id = StudentTakeCourse.cid 
 LEFT OUTER JOIN Student ON StudentTakeCourse.sid = Student.id
 WHERE Course.accepted = '1' AND StudentTakeCourse.sid IS NULL
 go
@@ -801,3 +801,13 @@ select CC.* from CreditCard CC inner join StudentAddCreditCard SCC
 on CC.number = SCC.creditCardNumber
 where SCC.sid = @sid
 end
+
+go
+
+CREATE PROC newAvailableCourses
+@sid int
+AS
+SELECT id, name FROM Course 
+except
+Select C.id, C.name from Course C inner join StudentTakeCourse STC on C.id = STC.cid
+where STC.sid = @sid;
