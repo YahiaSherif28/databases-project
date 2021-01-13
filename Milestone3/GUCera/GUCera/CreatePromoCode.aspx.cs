@@ -30,8 +30,8 @@ namespace GUCera
             try
             {
                 string codeValue = code.Text;
-                string expiryDateValue = expiryDate.Text;
-                string issueDateValue = issueDate.Text;
+                DateTime expiryDateValue = Convert.ToDateTime(expiryDate.Text);
+                DateTime issueDateValue = DateTime.Now;
                 double discountValue = double.Parse(discount.Text);
 
                 string adminId = Session["user"].ToString();
@@ -39,8 +39,8 @@ namespace GUCera
                 SqlCommand proc = new SqlCommand("AdminCreatePromocode", conn)
                     {CommandType = CommandType.StoredProcedure};
                 proc.Parameters.Add(new SqlParameter("@code", codeValue.Length == 0 ? (object)DBNull.Value : codeValue));
-                proc.Parameters.Add(new SqlParameter("@issueDate", issueDateValue.Length == 0 ? (object)DBNull.Value : issueDateValue));
-                proc.Parameters.Add(new SqlParameter("@expiryDate", expiryDateValue.Length == 0 ? (object)DBNull.Value : expiryDateValue));
+                proc.Parameters.Add(new SqlParameter("@issueDate", issueDateValue));
+                proc.Parameters.Add(new SqlParameter("@expiryDate", expiryDateValue));
                 proc.Parameters.Add(new SqlParameter("@discount", discountValue));
                 proc.Parameters.Add(new SqlParameter("@adminId", adminId));
 

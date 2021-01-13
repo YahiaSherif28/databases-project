@@ -423,8 +423,9 @@
                                   <asp:Button ID="gradeAssignment" runat="server" BorderStyle="Groove" OnClick="GradeAssignmentClick" Text="Grade" Width="200px" />
                               </td>
                           </tr>
+                      </table>
 
-                 </asp:Panel>
+                </asp:Panel>
             </div>
 
             </div>
