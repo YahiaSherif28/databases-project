@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using static GUCera.Util;
 namespace GUCera
 {
     public partial class Login : System.Web.UI.Page
@@ -44,8 +44,7 @@ namespace GUCera
             if (success.Value.ToString() == "1")
             {
                 Session["user"] = id;
-                //Response.Write("Hello");
-                //Response.Redirect("courses.aspx");
+                Session["type"] = type.Value.ToString();
             } else {
                 Response.Write("User Not Found");
             }

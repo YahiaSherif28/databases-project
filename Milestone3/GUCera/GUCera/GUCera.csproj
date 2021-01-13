@@ -68,7 +68,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="addMobile.aspx" />
+    <Content Include="CreatePromoCode.aspx" />
     <Content Include="InstructorRegister.aspx" />
+    <Content Include="ListAllCourses.aspx" />
+    <Content Include="ListNonAcceptedCourses.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="StudentRegister.aspx" />
     <Content Include="Web.config" />
@@ -81,12 +84,33 @@
     <Compile Include="addMobile.aspx.designer.cs">
       <DependentUpon>addMobile.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CreatePromoCode.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>CreatePromoCode.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CreatePromoCode.aspx.designer.cs">
+      <DependentUpon>CreatePromoCode.aspx</DependentUpon>
+    </Compile>
     <Compile Include="InstructorRegister.aspx.cs">
       <DependentUpon>InstructorRegister.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="InstructorRegister.aspx.designer.cs">
       <DependentUpon>InstructorRegister.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListAllCourses.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>ListAllCourses.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListAllCourses.aspx.designer.cs">
+      <DependentUpon>ListAllCourses.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListNonAcceptedCourses.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>ListNonAcceptedCourses.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListNonAcceptedCourses.aspx.designer.cs">
+      <DependentUpon>ListNonAcceptedCourses.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -103,6 +127,7 @@
     <Compile Include="StudentRegister.aspx.designer.cs">
       <DependentUpon>StudentRegister.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Util.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
