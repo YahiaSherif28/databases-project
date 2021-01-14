@@ -23,31 +23,37 @@ namespace GUCera
             //create a new connection
             SqlConnection conn = new SqlConnection(connStr);
 
-            SqlCommand loginproc = new SqlCommand("InstructorRegister", conn);
-            loginproc.CommandType = CommandType.StoredProcedure;
-
-
-            loginproc.Parameters.Add(new SqlParameter("@first_name", firstname.Text.Length == 0 ? (object)DBNull.Value : firstname.Text));
-            loginproc.Parameters.Add(new SqlParameter("@last_name", lastname.Text.Length == 0 ? (object)DBNull.Value : lastname.Text));
-            loginproc.Parameters.Add(new SqlParameter("@password", password.Text.Length == 0 ? (object)DBNull.Value : password.Text));
-            loginproc.Parameters.Add(new SqlParameter("@email", email.Text));
-            loginproc.Parameters.Add(new SqlParameter("@gender", gender.SelectedItem == null ? (object)DBNull.Value : Int16.Parse(gender.SelectedItem.Value)));
-            loginproc.Parameters.Add(new SqlParameter("@address", address.Text.Length == 0 ? (object)DBNull.Value : address.Text));
-
-
-            conn.Open();
+          
             try
             {
+                SqlCommand loginproc = new SqlCommand("studentRegister", conn);
+                loginproc.CommandType = CommandType.StoredProcedure;
+
+
+                loginproc.Parameters.Add(new SqlParameter("@first_name", firstname.Text.Length == 0 ? (object)DBNull.Value : firstname.Text));
+                loginproc.Parameters.Add(new SqlParameter("@last_name", lastname.Text.Length == 0 ? (object)DBNull.Value : lastname.Text));
+                loginproc.Parameters.Add(new SqlParameter("@password", password.Text.Length == 0 ? (object)DBNull.Value : password.Text));
+                loginproc.Parameters.Add(new SqlParameter("@email", email.Text));
+                loginproc.Parameters.Add(new SqlParameter("@gender", gender.SelectedItem == null ? (object)DBNull.Value : Int16.Parse(gender.SelectedItem.Value)));
+                loginproc.Parameters.Add(new SqlParameter("@address", address.Text.Length == 0 ? (object)DBNull.Value : address.Text));
+
+
+                conn.Open();
+                Int32 result = -1;
                 loginproc.ExecuteNonQuery();
+                SqlCommand command = new SqlCommand("Select id from [Users] where email=@email", conn);
+                command.Parameters.AddWithValue("@email", email.Text);
+                result = (Int32)command.ExecuteScalar();
+                conn.Close();
+                InstructorRegisterMessage.Text = "Your ID is  " + result;
             }
             catch (SqlException ee)
             {
-                Response.Write("Email Already Exists");
+                InstructorRegisterMessage.Text = "Please enter valid information ";
                 conn.Close();
                 return;
             }
-            conn.Close();
-            Response.Redirect("Login.aspx");
+        
         }
     }
 }

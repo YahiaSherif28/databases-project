@@ -26,38 +26,55 @@ namespace GUCera
             string connStr = WebConfigurationManager.ConnectionStrings["GUCera"].ToString();
             //create a new connection
             SqlConnection conn = new SqlConnection(connStr);
-
+            if (username.Text.Length == 0)
+            {
+                loginMsg.Text = "Invalid Information";
+                return;
+            }
             int id = Int16.Parse(username.Text);
             String pass = password.Text;
-
-            SqlCommand loginproc = new SqlCommand("userLogin", conn);
-            loginproc.CommandType = CommandType.StoredProcedure;
-            loginproc.Parameters.Add(new SqlParameter("@id", id));
-            loginproc.Parameters.Add(new SqlParameter("@password", pass.Length == 0 ? (object)DBNull.Value : pass));
-
-            SqlParameter success = loginproc.Parameters.Add("@success", SqlDbType.Int);
-            SqlParameter type = loginproc.Parameters.Add("@type", SqlDbType.Int);
-
-            success.Direction = ParameterDirection.Output;
-            type.Direction = ParameterDirection.Output;
-
-            conn.Open();
-            loginproc.ExecuteNonQuery();
-            conn.Close();
-
-            if (success.Value.ToString() == "1")
+            try
             {
-                Session["user"] = id;
-                Session["type"] = type.Value.ToString();
-                if(type.Value.ToString() == "2") //Student
-                    Response.Redirect("MyProfile.aspx");
-                else if(type.Value.ToString() == "1") //Admin
-                    Response.Redirect("Admin.aspx");
-                else if(type.Value.ToString() == "0") //Instructor
-                    Response.Redirect("InstructorProfile.aspx");
-            } else {
-                Response.Write("User Not Found");
+                SqlCommand loginproc = new SqlCommand("userLogin", conn);
+                loginproc.CommandType = CommandType.StoredProcedure;
+                loginproc.Parameters.Add(new SqlParameter("@id", id));
+                loginproc.Parameters.Add(new SqlParameter("@password", pass.Length == 0 ? (object)DBNull.Value : pass));
+
+                SqlParameter success = loginproc.Parameters.Add("@success", SqlDbType.Int);
+                SqlParameter type = loginproc.Parameters.Add("@type", SqlDbType.Int);
+
+                success.Direction = ParameterDirection.Output;
+                type.Direction = ParameterDirection.Output;
+
+                conn.Open();
+                loginproc.ExecuteNonQuery();
+                conn.Close();
+                if (success.Value.ToString() == "1")
+                {
+                    Session["user"] = id;
+                    Session["type"] = type.Value.ToString();
+                    if (type.Value.ToString() == "2") //Student
+                        Response.Redirect("MyProfile.aspx");
+                    else if (type.Value.ToString() == "1") //Admin
+                        Response.Redirect("Admin.aspx");
+                    else if (type.Value.ToString() == "0") //Instructor
+                        Response.Redirect("InstructorProfile.aspx");
+                }
+                else
+                {
+                    loginMsg.Text = "Invalid Information";
+                }
             }
+            catch (Exception ee)
+            {
+                loginMsg.Text = "Please Enter Data Correctly";
+                conn.Close();
+                return;
+            }
+
+           
         }
+
+      
     }
 }

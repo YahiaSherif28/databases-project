@@ -87,21 +87,27 @@ namespace GUCera
         protected void AddCourseClick(object sender, EventArgs e)
         {
             int id = (System.Int32)(Session["user"]);
-            SqlCommand editproc = new SqlCommand("InstAddCourse", conn);
-            editproc.CommandType = CommandType.StoredProcedure;
-            editproc.Parameters.Add(new SqlParameter("@creditHours", credithours.Text.Length == 0 ? (object)DBNull.Value : Int16.Parse(credithours.Text)));
-            editproc.Parameters.Add(new SqlParameter("@name", cname.Text.Length == 0 ? (object)DBNull.Value : cname.Text));
-            editproc.Parameters.Add(new SqlParameter("@price", price.Text.Length == 0 ? (object)DBNull.Value : double.Parse(price.Text)));
-            editproc.Parameters.Add(new SqlParameter("@instructorId", id));
+            if (credithours.Text.Length == 0 || cname.Text.Length == 0 || price.Text.Length == 0)
+            {
+                AddCourseMessage.Text = "Please Enter Data Correctly";
+                return;
+            }
+          
             try
             {
+                SqlCommand editproc = new SqlCommand("InstAddCourse", conn);
+                editproc.CommandType = CommandType.StoredProcedure;
+                editproc.Parameters.Add(new SqlParameter("@creditHours", credithours.Text.Length == 0 ? (object)DBNull.Value : Int16.Parse(credithours.Text)));
+                editproc.Parameters.Add(new SqlParameter("@name", cname.Text.Length == 0 ? (object)DBNull.Value : cname.Text));
+                editproc.Parameters.Add(new SqlParameter("@price", price.Text.Length == 0 ? (object)DBNull.Value : double.Parse(price.Text)));
+                editproc.Parameters.Add(new SqlParameter("@instructorId", id));
                 conn.Open();
                 editproc.ExecuteNonQuery();
                 conn.Close();
             }
             catch (Exception ee)
             {
-                Response.Write(ee.Message);
+                AddCourseMessage.Text = "Please Enter Data Correctly";
                 conn.Close();
                 return;
             }
@@ -112,25 +118,32 @@ namespace GUCera
         protected void DefineAssignmentClick(object sender, EventArgs e)
         {
             int id = (System.Int32)(Session["user"]);
-            SqlCommand editproc = new SqlCommand("DefineAssignmentOfCourseOfCertianType", conn);
-            editproc.CommandType = CommandType.StoredProcedure;
-            editproc.Parameters.Add(new SqlParameter("@instId", id));
-            editproc.Parameters.Add(new SqlParameter("@cid", CourseID.Text.Length == 0 ? (object)DBNull.Value : Int16.Parse(CourseID.Text)));
-            editproc.Parameters.Add(new SqlParameter("@number", AssignmentNumber.Text.Length == 0 ? (object)DBNull.Value : Int16.Parse(AssignmentNumber.Text)));
-            editproc.Parameters.Add(new SqlParameter("@type", AssignmentType.Text.Length == 0 ? (object)DBNull.Value : AssignmentType.Text));
-            editproc.Parameters.Add(new SqlParameter("@fullGrade", AssignmentfullGrade.Text.Length == 0 ? (object)DBNull.Value : Int16.Parse(AssignmentfullGrade.Text)));
-            editproc.Parameters.Add(new SqlParameter("@weight", AssignmentWeight.Text.Length == 0 ? (object)DBNull.Value : double.Parse(AssignmentWeight.Text)));
-            editproc.Parameters.Add(new SqlParameter("@deadline", DeadLine.Text.Length == 0 ? (object)DBNull.Value : Convert.ToDateTime(DeadLine.Text)));
-            editproc.Parameters.Add(new SqlParameter("@content", Content.Text.Length == 0 ? (object)DBNull.Value : Content.Text));
+            if (CourseID.Text.Length == 0 || AssignmentNumber.Text.Length == 0 || AssignmentType.Text.Length == 0 || AssignmentfullGrade.Text.Length == 0 || AssignmentWeight.Text.Length == 0 || DeadLine.Text.Length == 0 || Content.Text.Length==0)
+            {
+                DefineAssignmentMessage.Text = "Please Enter Data Correctly";
+                return;
+            }
+
             try
             {
+
+                SqlCommand editproc = new SqlCommand("DefineAssignmentOfCourseOfCertianType", conn);
+                editproc.CommandType = CommandType.StoredProcedure;
+                editproc.Parameters.Add(new SqlParameter("@instId", id));
+                editproc.Parameters.Add(new SqlParameter("@cid", CourseID.Text.Length == 0 ? (object)DBNull.Value : Int16.Parse(CourseID.Text)));
+                editproc.Parameters.Add(new SqlParameter("@number", AssignmentNumber.Text.Length == 0 ? (object)DBNull.Value : Int16.Parse(AssignmentNumber.Text)));
+                editproc.Parameters.Add(new SqlParameter("@type", AssignmentType.Text.Length == 0 ? (object)DBNull.Value : AssignmentType.Text));
+                editproc.Parameters.Add(new SqlParameter("@fullGrade", AssignmentfullGrade.Text.Length == 0 ? (object)DBNull.Value : Int16.Parse(AssignmentfullGrade.Text)));
+                editproc.Parameters.Add(new SqlParameter("@weight", AssignmentWeight.Text.Length == 0 ? (object)DBNull.Value : double.Parse(AssignmentWeight.Text)));
+                editproc.Parameters.Add(new SqlParameter("@deadline", DeadLine.Text.Length == 0 ? (object)DBNull.Value : Convert.ToDateTime(DeadLine.Text)));
+                editproc.Parameters.Add(new SqlParameter("@content", Content.Text.Length == 0 ? (object)DBNull.Value : Content.Text));
                 conn.Open();
                 editproc.ExecuteNonQuery();
                 conn.Close();
             }
             catch (Exception ee)
             {
-                Response.Write(ee.Message);
+                DefineAssignmentMessage.Text = "Please Enter Data Correctly";
                 conn.Close();
                 return;
             }
@@ -141,24 +154,30 @@ namespace GUCera
         protected void GradeAssignmentClick(object sender, EventArgs e)
         {
             int id = (System.Int32)(Session["user"]);
-            SqlCommand editproc = new SqlCommand("InstructorgradeAssignmentOfAStudent", conn);
-            editproc.CommandType = CommandType.StoredProcedure;
-            editproc.Parameters.Add(new SqlParameter("@instrId", id));
-            editproc.Parameters.Add(new SqlParameter("@sid", StudentID_G.Text.Length == 0 ? (object)DBNull.Value : Int16.Parse(StudentID_G.Text)));
-            editproc.Parameters.Add(new SqlParameter("@cid", CourseID_G.Text.Length == 0 ? (object)DBNull.Value : Int16.Parse(CourseID_G.Text)));
-            editproc.Parameters.Add(new SqlParameter("@assignmentNumber", AssignmentNumber_G.Text.Length == 0 ? (object)DBNull.Value : Int16.Parse(AssignmentNumber_G.Text)));
-            editproc.Parameters.Add(new SqlParameter("@type", AssignmentType_G.Text.Length == 0 ? (object)DBNull.Value : AssignmentType_G.Text));
-            editproc.Parameters.Add(new SqlParameter("@grade", AssignmentGrade_G.Text.Length == 0 ? (object)DBNull.Value : double.Parse(AssignmentGrade_G.Text)));
-            
+
+            if (StudentID_G.Text.Length == 0 || CourseID_G.Text.Length == 0 || AssignmentNumber_G.Text.Length == 0 || AssignmentType_G.Text.Length == 0 || AssignmentGrade_G.Text.Length == 0)
+            {
+                GradeAssignmentMessage.Text = "Please Enter Data Correctly";
+                return;
+            }
+          
             try
             {
+                SqlCommand editproc = new SqlCommand("InstructorgradeAssignmentOfAStudent", conn);
+                editproc.CommandType = CommandType.StoredProcedure;
+                editproc.Parameters.Add(new SqlParameter("@instrId", id));
+                editproc.Parameters.Add(new SqlParameter("@sid", StudentID_G.Text.Length == 0 ? (object)DBNull.Value : Int16.Parse(StudentID_G.Text)));
+                editproc.Parameters.Add(new SqlParameter("@cid", CourseID_G.Text.Length == 0 ? (object)DBNull.Value : Int16.Parse(CourseID_G.Text)));
+                editproc.Parameters.Add(new SqlParameter("@assignmentNumber", AssignmentNumber_G.Text.Length == 0 ? (object)DBNull.Value : Int16.Parse(AssignmentNumber_G.Text)));
+                editproc.Parameters.Add(new SqlParameter("@type", AssignmentType_G.Text.Length == 0 ? (object)DBNull.Value : AssignmentType_G.Text));
+                editproc.Parameters.Add(new SqlParameter("@grade", AssignmentGrade_G.Text.Length == 0 ? (object)DBNull.Value : double.Parse(AssignmentGrade_G.Text)));
                 conn.Open();
                 editproc.ExecuteNonQuery();
                 conn.Close();
             }
             catch (Exception ee)
             {
-                Response.Write(ee.Message);
+                GradeAssignmentMessage.Text = "Please Enter Data Correctly";
                 conn.Close();
                 return;
             }
@@ -170,23 +189,30 @@ namespace GUCera
         protected void IssueCertificateClick(object sender, EventArgs e)
         {
             int id = (System.Int32)(Session["user"]);
-            SqlCommand editproc = new SqlCommand("InstructorIssueCertificateToStudent", conn);
-            editproc.CommandType = CommandType.StoredProcedure;
-            editproc.Parameters.Add(new SqlParameter("@cid", CoursID_C.Text.Length == 0 ? (object)DBNull.Value : Int16.Parse(CoursID_C.Text)));
-            editproc.Parameters.Add(new SqlParameter("@sid", StudentID_C.Text.Length == 0 ? (object)DBNull.Value : Int16.Parse(StudentID_C.Text)));
-            editproc.Parameters.Add(new SqlParameter("@insId", id));
-            editproc.Parameters.Add(new SqlParameter("@issueDate", DateTime.Today));
-     
+
+            if (CoursID_C.Text.Length == 0 || StudentID_C.Text.Length == 0 )
+            {
+                IssueCertificateMessage.Text = "Please Enter Data Correctly";
+                return;
+            }
+            
+            
 
             try
             {
+                SqlCommand editproc = new SqlCommand("InstructorIssueCertificateToStudent", conn);
+                editproc.CommandType = CommandType.StoredProcedure;
+                editproc.Parameters.Add(new SqlParameter("@cid", CoursID_C.Text.Length == 0 ? (object)DBNull.Value : Int16.Parse(CoursID_C.Text)));
+                editproc.Parameters.Add(new SqlParameter("@sid", StudentID_C.Text.Length == 0 ? (object)DBNull.Value : Int16.Parse(StudentID_C.Text)));
+                editproc.Parameters.Add(new SqlParameter("@insId", id));
+                editproc.Parameters.Add(new SqlParameter("@issueDate", DateTime.Today));
                 conn.Open();
                 editproc.ExecuteNonQuery();
                 conn.Close();
             }
             catch (Exception ee)
             {
-                Response.Write(ee.Message);
+                IssueCertificateMessage.Text = "Please Enter Data Correctly";
                 conn.Close();
                 return;
             }
@@ -197,6 +223,12 @@ namespace GUCera
         protected void addMobile(object sender, EventArgs e)
         {
             Response.Redirect("addMobile.aspx");
+        }
+
+        protected void logout_Click(object sender, EventArgs e)
+        {
+            Session["user"] = null;
+            Response.Redirect("Login.aspx");
         }
     }
 }

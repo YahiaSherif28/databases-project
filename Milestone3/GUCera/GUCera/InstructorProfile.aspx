@@ -5,7 +5,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
     <style type="text/css">
+       body { padding-top: 60px; }
+        th{
+            text-align:center;
+            padding:4px;
+        }
+        td{
+            padding:2px 4px 2px 4px;
+        }
+        .btn-default{
+            margin-bottom:4px;
+        }
+
          .container {
             width: 800px;
             margin-left: auto;
@@ -48,7 +61,7 @@
         }
         .auto-style16 {
             width: 72%;
-            height: 34px;
+            height: 63px;
             margin-left: 0px;
         }
         .auto-style18 {
@@ -87,11 +100,31 @@
         .auto-style36 {
             width: 695px;
         }
+        .auto-style37 {
+            width: 800px;
+            height: 114px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 20px;
+            background-color: white;
+        }
     </style>
 </head>
 <body style="height: 2362px">
     <form id="form1" runat="server">
         <div>
+            <nav class="navbar navbar-inverse navbar-fixed-top" style="background:#1C5E55">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand">GUCera</a>
+                    </div>
+                   
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><asp:linkButton runat="server" onClick="logout_Click"><span class="glyphicon glyphicon-log-out"></span>Logout</asp:linkButton></li>
+                    </ul>
+                </div>
+            </nav>
+
             <div class="auto-style1">
                 <h2>
                     <asp:Label ID="Label1" runat="server" CssClass="auto-style2" ForeColor="#1C5E55" Text="My Profile"></asp:Label>
@@ -132,7 +165,7 @@
                         <SortedDescendingHeaderStyle BackColor="#15524A" />
                     </asp:GridView>
                 </div>
-                <div class ="container" runat ="server" style="text-align:center; height: 101px;">
+                <div class ="auto-style37" runat ="server" style="text-align:center; ">
                     <table class="auto-style16">
                         <tr>
                             <td class="auto-style10">
@@ -153,11 +186,10 @@
                                  &nbsp;</td>
                         </tr>
                     </table>
-                                <asp:LinkButton ID="FeedbacksLinkButton" runat="server" Text="View Feedbacks" style="padding:4px" BackColor="#1C5E55" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" Font-Bold="True" Font-Size="Medium" Font-Underline="False" ForeColor="White" Width="254px" Font-Names="Arial" OnClick="ViewFeedBackButton_Click"  Height="25px"/>
-                                <asp:LinkButton ID="IssueCertificateLinkButton" runat="server" Text="Issue Certificate" style="padding:4px" BackColor="#1C5E55" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" Font-Bold="True" Font-Size="Medium" Font-Underline="False" ForeColor="White" Width="254px" Font-Names="Arial" OnClick="IssueCertificate_Click"  Height="25px"/>
-                    <br />
-            <asp:Button ID="Button1" runat="server" OnClick="addMobile" Text="Add Mobile" />
-                    <br />
+                                <asp:LinkButton ID="FeedbacksLinkButton" runat="server" Text="View Feedbacks" style="padding:4px" BackColor="#1C5E55" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" Font-Bold="True" Font-Size="Medium" Font-Underline="False" ForeColor="White" Width="224px" Font-Names="Arial" OnClick="ViewFeedBackButton_Click"  Height="29px"/>
+                                <asp:LinkButton ID="IssueCertificateLinkButton" runat="server" Text="Issue Certificate" style="padding:4px" BackColor="#1C5E55" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" Font-Bold="True" Font-Size="Medium" Font-Underline="False" ForeColor="White" Width="214px" Font-Names="Arial" OnClick="IssueCertificate_Click"  Height="29px"/>
+                                <asp:LinkButton ID="LinkButton1" runat="server" Text="Add Mobile" style="padding:4px" BackColor="#1C5E55" BorderColor="Black" BorderStyle="Solid" BorderWidth="2px" Font-Bold="True" Font-Size="Medium" Font-Underline="False" ForeColor="White" Width="232px" Font-Names="Arial" OnClick="addMobile"  Height="29px"/>
+                  
                 </div>
             </div>
             <div class ="container" runat ="server" id="addCourseDiv" visible ="false" >
@@ -225,7 +257,7 @@
                            <tr>
                               <td class="auto-style9">Assignment Type:</td>
                               <td class="auto-style15">
-                                  <asp:TextBox ID="AssignmentType" runat="server" Width="232px" MaxLength="16"></asp:TextBox>
+                                  <asp:TextBox ID="AssignmentType" runat="server" Width="232px" MaxLength="10"></asp:TextBox>
                               </td>
                           </tr>   
                            <tr>
@@ -408,7 +440,7 @@
                            <tr>
                               <td class="auto-style9">Assignment Type:</td>
                               <td class="auto-style15">
-                                  <asp:TextBox ID="AssignmentType_G" runat="server" Width="232px" MaxLength="16"></asp:TextBox>
+                                  <asp:TextBox ID="AssignmentType_G" runat="server" Width="232px" MaxLength="10"></asp:TextBox>
                               </td>
                           </tr>   
                            <tr>
