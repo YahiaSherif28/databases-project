@@ -306,7 +306,7 @@
                         <div class="auto-style14">
                             <asp:Label ID="Label3" runat="server" Font-Bold="True" Font-Size="Large" ForeColor="#1C5E55">View Assignments</asp:Label>
                         </div>
-                        <asp:GridView ID="GridView3" runat="server" align="center" AutoGenerateColumns="False" CellPadding="4" DataSourceID="assignmentsDataSource" ForeColor="#333333" ShowHeaderWhenEmpty="True" Width="500px" EmptyDataText="No data available" DataKeyNames="number" >
+                        <asp:GridView ID="GridView3" runat="server" align="center" AutoGenerateColumns="False" CellPadding="4" DataSourceID="assignmentsDataSource" ForeColor="#333333" ShowHeaderWhenEmpty="True" Width="500px" EmptyDataText="No data available"  >
                             <AlternatingRowStyle BackColor="White" />
                             <Columns>
                                 <asp:BoundField DataField="sid" HeaderText="Student ID" ReadOnly="True" SortExpression="sid" />
