@@ -8,7 +8,8 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
     <style type="text/css">
-       th{
+       body { padding-top: 60px; }
+        th{
             text-align:center;
             padding:4px;
         }
@@ -36,7 +37,7 @@
         }
 
         .auto-style5 {
-            height: 200px;
+            height: 120px;
             padding: 10px;
             text-align: center;
         }
@@ -79,7 +80,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <nav class="navbar navbar-inverse" style="background:#1C5E55">
+            <nav class="navbar navbar-inverse navbar-fixed-top" style="background:#1C5E55">
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <a class="navbar-brand">GUCera</a>

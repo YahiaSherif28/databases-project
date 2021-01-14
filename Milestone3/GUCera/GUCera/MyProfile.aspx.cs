@@ -78,6 +78,7 @@ namespace GUCera
         protected void EditInfoLinkButton_Click(object sender, EventArgs e)
         {
             editInfoDiv.Visible = !editInfoDiv.Visible;
+            promoDiv.Visible = mobileDiv.Visible = creditCardDiv.Visible = false;
             message.Text = null;
         }
         protected void addmobile_Click(object sender, EventArgs e)
@@ -114,6 +115,8 @@ namespace GUCera
         protected void MobileLinkButton_Click(object sender, EventArgs e)
         {
             mobileDiv.Visible = !mobileDiv.Visible;
+            promoDiv.Visible = creditCardDiv.Visible = editInfoDiv.Visible = false;
+
             mobileMsg.Text = null;
         }
 
@@ -157,12 +160,14 @@ namespace GUCera
         protected void CardLinkButton_Click(object sender, EventArgs e)
         {
             creditCardDiv.Visible = !creditCardDiv.Visible;
+            promoDiv.Visible = mobileDiv.Visible = editInfoDiv.Visible = false;
             cardMsg.Text = null;
         }
 
         protected void PromoLinkButton_Click(object sender, EventArgs e)
         {
             promoDiv.Visible = !promoDiv.Visible;
+            creditCardDiv.Visible = mobileDiv.Visible = editInfoDiv.Visible = false;
         }
     }
 }
