@@ -182,7 +182,11 @@ namespace GUCera
             Message.Text = "Feedback Added Successfully";
             Message.Visible = true;
         }
-
+        protected void logout_Click(object sender, EventArgs e)
+        {
+            Session["user"] = null;
+            Response.Redirect("Login.aspx");
+        }
         private void viewAssignBtn(object sender, EventArgs e, int id, String name)
         {
             if (assignDiv.Visible == true)

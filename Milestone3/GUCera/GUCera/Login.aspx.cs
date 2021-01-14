@@ -50,7 +50,7 @@ namespace GUCera
                 Session["user"] = id;
                 Session["type"] = type.Value.ToString();
                 if(type.Value.ToString() == "2") //Student
-                    Response.Redirect("Home.aspx");
+                    Response.Redirect("MyProfile.aspx");
                 else if(type.Value.ToString() == "1") //Admin
                     Response.Redirect("Admin.aspx");
                 else if(type.Value.ToString() == "0") //Instructor

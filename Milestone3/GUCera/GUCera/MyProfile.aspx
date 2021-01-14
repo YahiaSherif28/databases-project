@@ -13,7 +13,10 @@
             padding:4px;
         }
         td{
-            padding:4px;
+            padding:2px 4px 2px 4px;
+        }
+        .btn-default{
+            margin-bottom:4px;
         }
         .container {
             width: 800px;
@@ -82,12 +85,12 @@
                         <a class="navbar-brand">GUCera</a>
                     </div>
                     <ul class="nav navbar-nav">
-                        <li><a href="/AddCourse.aspx">My Courses</a></li>
+                        <li><a href="MyCourses.aspx">My Courses</a></li>
                         <li class="active"><a href="MyProfile.aspx">My Profile</a></li>
-                        <li><a href="MyCourses.aspx">Available Courses</a></li>
+                        <li><a href="AddCourse.aspx">Available Courses</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+                        <li><asp:linkButton runat="server" onClick="logout_Click"><span class="glyphicon glyphicon-log-out"></span>Logout</asp:linkButton></li>
                     </ul>
                 </div>
             </nav>
@@ -164,19 +167,19 @@
                         <tr>
                             <td class="auto-style9">First Name:</td>
                             <td>
-                                <asp:TextBox ID="fname" runat="server" Width="200px" MaxLength="10"></asp:TextBox>
+                                <asp:TextBox ID="fname" class="form-control" runat="server" Width="200px" MaxLength="10"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td class="auto-style9">Last Name:</td>
                             <td>
-                                <asp:TextBox ID="lname" runat="server" Width="200px" MaxLength="10"></asp:TextBox>
+                                <asp:TextBox ID="lname" class="form-control" runat="server" Width="200px" MaxLength="10"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td class="auto-style9">Password:</td>
                             <td>
-                                <asp:TextBox ID="password" runat="server" TextMode="Password" Width="200px" MaxLength="10"></asp:TextBox>
+                                <asp:TextBox ID="password" class="form-control" runat="server" TextMode="Password" Width="200px" MaxLength="10"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -191,19 +194,19 @@
                         <tr>
                             <td class="auto-style9">Email:</td>
                             <td>
-                                <asp:TextBox ID="email" runat="server" Width="200px" MaxLength="10"></asp:TextBox>
+                                <asp:TextBox ID="email" class="form-control" runat="server" Width="200px" MaxLength="10"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td class="auto-style9">Address:</td>
                             <td>
-                                <asp:TextBox ID="address" runat="server" Width="200px" MaxLength="10"></asp:TextBox>
+                                <asp:TextBox ID="address" class="form-control" runat="server" Width="200px" MaxLength="10"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td class="auto-style9">&nbsp;</td>
                             <td>
-                                <asp:Button ID="save" runat="server" Text="Save" Width="200px" BorderStyle="Groove" OnClick="save_Click" />
+                                <asp:Button ID="save" class="btn-default" runat="server" Text="Save" Width="200px" Height="30px" BorderStyle="Groove" OnClick="save_Click" />
                             </td>
                         </tr>
                     </table>
@@ -215,7 +218,7 @@
                         <div class="auto-style14">
                             <asp:Label ID="Label4" runat="server" Font-Bold="True" Font-Size="Large" ForeColor="#1C5E55">Add Mobile Number</asp:Label>
                         </div>
-                        <asp:GridView ID="GridView2" runat="server" align="center" AutoGenerateColumns="False" CellPadding="4" DataSourceID="mobileDataSource" ForeColor="#333333" ShowHeaderWhenEmpty="True" Width="200px" EmptyDataText="No data available">
+                        <asp:GridView ID="GridView2" class="table" runat="server" align="center" AutoGenerateColumns="False" CellPadding="2" DataSourceID="mobileDataSource" ForeColor="#333333" ShowHeaderWhenEmpty="True" Width="200px" EmptyDataText="No data available">
                             <AlternatingRowStyle BackColor="White" />
                             <Columns>
                                 <asp:BoundField DataField="mobileNumber" HeaderText="Mobile Number" />
@@ -249,13 +252,13 @@
                         <tr>
                             <td class="auto-style9">Enter your Number:</td>
                             <td>
-                                <asp:TextBox ID="mobileNumber" runat="server" Width="200px" MaxLength="16"></asp:TextBox>
+                                <asp:TextBox ID="mobileNumber" class="form-control" runat="server" Width="200px" MaxLength="16"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td class="auto-style13">&nbsp;</td>
                             <td>
-                                <asp:Button ID="addmobile" runat="server" BorderStyle="Groove" OnClick="addmobile_Click" Text="Add" Width="200px" />
+                                <asp:Button ID="addmobile" class="btn-default" runat="server" BorderStyle="Groove" OnClick="addmobile_Click" Text="Add" Width="200px" Height="30px"/>
                             </td>
                         </tr>
                     </table>
@@ -303,31 +306,31 @@
                         <tr>
                             <td class="auto-style9">Card Number:</td>
                             <td class="auto-style15">
-                                <asp:TextBox ID="cardnumber" runat="server" Width="200px" MaxLength="14"></asp:TextBox>
+                                <asp:TextBox ID="cardnumber" class="form-control" runat="server" Width="200px" MaxLength="14"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td class="auto-style9">Holder Name:</td>
                             <td class="auto-style15">
-                                <asp:TextBox ID="cardholder" runat="server" Width="200px" MaxLength="16"></asp:TextBox>
+                                <asp:TextBox ID="cardholder" class="form-control" runat="server" Width="200px" MaxLength="16"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td class="auto-style9">Expiry date:</td>
                             <td class="auto-style15">
-                                <asp:TextBox ID="expirydate" runat="server" TextMode="Date" Width="200px"></asp:TextBox>
+                                <asp:TextBox ID="expirydate" class="form-control" runat="server" TextMode="Date" Width="200px"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td class="auto-style9">CVV:</td>
                             <td class="auto-style15">
-                                <asp:TextBox ID="cvvtextbox" runat="server" Width="200px" MaxLength="3"></asp:TextBox>
+                                <asp:TextBox ID="cvvtextbox" class="form-control" runat="server" Width="200px" MaxLength="3"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td class="auto-style9">&nbsp;</td>
                             <td class="auto-style15">
-                                <asp:Button ID="addcard" runat="server" BorderStyle="Groove" OnClick="addcard_Click" Text="Add" Width="200px" />
+                                <asp:Button ID="addcard" class="btn-default" runat="server" BorderStyle="Groove" OnClick="addcard_Click" Text="Add" Width="200px" Height="30px" />
                             </td>
                         </tr>
                     </table>

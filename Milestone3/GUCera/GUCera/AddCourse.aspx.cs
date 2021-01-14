@@ -28,7 +28,11 @@ namespace GUCera
                 Session["enrollMsg"] = null;
             }          
         }
-
+        protected void logout_Click(object sender, EventArgs e)
+        {
+            Session["user"] = null;
+            Response.Redirect("Login.aspx");
+        }
         protected void moreDetails_Click(object sender, EventArgs e)
         {
             int cid = Convert.ToInt32((sender as LinkButton).CommandArgument);

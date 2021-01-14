@@ -41,6 +41,11 @@ namespace GUCera
                 Session["cardMsg"] = null;
             }
         }
+        protected void logout_Click(object sender, EventArgs e)
+        {
+            Session["user"] = null;
+            Response.Redirect("Login.aspx");
+        }
 
         protected void save_Click(object sender, EventArgs e)
         {

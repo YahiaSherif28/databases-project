@@ -39,12 +39,12 @@
                         <a class="navbar-brand" href="#">GUCera</a>
                     </div>
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="/AddCourse.aspx">My Courses</a></li>
+                        <li><a href="MyCourses.aspx">My Courses</a></li>
                         <li><a href="MyProfile.aspx">My Profile</a></li>
-                        <li><a href="MyCourses.aspx">Available Courses</a></li>
+                        <li class="active"><a href="AddCourse.aspx">Available Courses</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+                        <li><asp:linkButton runat="server" onClick="logout_Click"><span class="glyphicon glyphicon-log-out"></span>Logout</asp:linkButton></li>
                     </ul>
                 </div>
             </nav>
