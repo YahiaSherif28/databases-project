@@ -1,10 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MyCourses.aspx.cs" Inherits="GUCera.MyCourses1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Assignments.aspx.cs" Inherits="GUCera.Assignments" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>My Courses</title>
+    <title></title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
@@ -24,7 +24,7 @@
     </style>
 </head>
 <body>
-    <form id="form1" runat="server" aria-atomic="False" defaultbutton="Button2">
+    <form id="form1" runat="server">
         <div>
             <div>
                 <nav class="navbar navbar-inverse" style="background: #1C5E55">
@@ -43,37 +43,15 @@
                     </div>
                 </nav>
             </div>
-            
-            <div>
-                <asp:Table ID="Courses" runat="server"
-                    CellPadding="10"
-                    GridLines="Both"
-                    HorizontalAlign="Center" CellSpacing="5">
-                </asp:Table>
-            </div>
-            <br />
-            <br />
-            <br />
-
-            <div runat="server" id="feedbackDiv" style="position: absolute; left: 500px">
-                <asp:Label ID="Label2" runat="server"></asp:Label>
-                <br />
-                <asp:TextBox ID="TextBox2" runat="server" Height="25px"></asp:TextBox>
-                <br />
-                <asp:Button ID="Button2" runat="server" Text="Add" OnClick="addFeedback" />
-                <asp:Label ID="courseID" runat="server"></asp:Label>
-                <br />
-            </div>
-
-            <div runat="server" id="certDiv">
-                <asp:Table ID="Certs" runat="server"
+        <div>
+            <div runat="server" id="assignDiv">
+                <asp:Table ID="AssignmentsTable" runat="server"
                     CellPadding="10"
                     GridLines="Both"
                     HorizontalAlign="Center">
                 </asp:Table>
             </div>
             <div runat="server" id="msgDiv" style="position: absolute; left: 500px">
-                <asp:Label ID="Message" runat="server"></asp:Label>
             </div>
         </div>
     </form>

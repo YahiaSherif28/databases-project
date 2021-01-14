@@ -33,24 +33,6 @@ namespace GUCera
         protected global::System.Web.UI.WebControls.Table Courses;
 
         /// <summary>
-        /// assignDiv control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl assignDiv;
-
-        /// <summary>
-        /// Assignments control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table Assignments;
-
-        /// <summary>
         /// feedbackDiv control.
         /// </summary>
         /// <remarks>
@@ -112,6 +94,15 @@ namespace GUCera
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Table Certs;
+
+        /// <summary>
+        /// msgDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl msgDiv;
 
         /// <summary>
         /// Message control.

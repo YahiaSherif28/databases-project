@@ -70,6 +70,7 @@
     <Content Include="AddCourse.aspx" />
     <Content Include="addMobile.aspx" />
     <Content Include="Admin.aspx" />
+    <Content Include="Assignments.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="CreatePromoCode.aspx" />
     <Content Include="InstructorProfile.aspx" />
@@ -103,6 +104,12 @@
     </Compile>
     <Compile Include="Admin.aspx.designer.cs">
       <DependentUpon>Admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Assignments.aspx.cs">
+      <DependentUpon>Assignments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Assignments.aspx.designer.cs">
+      <DependentUpon>Assignments.aspx</DependentUpon>
     </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
