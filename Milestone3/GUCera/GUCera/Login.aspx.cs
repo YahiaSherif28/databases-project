@@ -16,7 +16,7 @@ namespace GUCera
         {
             if (Session["loginMsg"] != null)
             {
-                Response.Write(Session["loginMsg"]);
+                loginMsg.Text = (String)Session["loginMsg"];
                 Session["loginMsg"] = null;
             }
         }
@@ -31,7 +31,15 @@ namespace GUCera
                 loginMsg.Text = "Invalid Information";
                 return;
             }
-            int id = Int16.Parse(username.Text);
+            int id;
+            try { 
+                id = Int32.Parse(username.Text);                
+            }
+            catch (Exception)
+            {
+                loginMsg.Text = "ID must be a number";
+                return;
+            }
             String pass = password.Text;
             try
             {

@@ -86,7 +86,7 @@
                             <td class="auto-style9">Gender:</td>
                             <td>
                                 <asp:RadioButtonList ID="gender" runat="server">
-                                    <asp:ListItem Value="1">Male</asp:ListItem>
+                                    <asp:ListItem Value="1" Selected="True">Male</asp:ListItem>
                                     <asp:ListItem Value="0">Female</asp:ListItem>
                                 </asp:RadioButtonList>
                             </td>

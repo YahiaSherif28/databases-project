@@ -26,7 +26,7 @@ namespace GUCera
           
             try
             {
-                SqlCommand loginproc = new SqlCommand("studentRegister", conn);
+                SqlCommand loginproc = new SqlCommand("InstructorRegister", conn);
                 loginproc.CommandType = CommandType.StoredProcedure;
 
 
@@ -50,6 +50,7 @@ namespace GUCera
             catch (SqlException ee)
             {
                 InstructorRegisterMessage.Text = "Please enter valid information ";
+                //Response.Write(ee.Message);
                 conn.Close();
                 return;
             }
