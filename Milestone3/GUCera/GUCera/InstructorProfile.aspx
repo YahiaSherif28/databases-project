@@ -86,9 +86,6 @@
             text-align: right;
             height: 29px;
         }
-        .auto-style29 {
-            height: 29px;
-        }
         .auto-style30 {
             width: 170px;
             text-align: center;
@@ -107,6 +104,20 @@
             margin-right: auto;
             padding: 20px;
             background-color: white;
+        }
+        .auto-style38 {
+            height: 27px;
+            width: 216px;
+        }
+        .auto-style39 {
+            height: 29px;
+            width: 216px;
+        }
+        .auto-style40 {
+            width: 216px;
+        }
+        .auto-style41 {
+            width: 690px;
         }
     </style>
 </head>
@@ -194,36 +205,42 @@
             </div>
             <div class ="container" runat ="server" id="addCourseDiv" visible ="false" >
                 <asp:Panel ID="Panel2"  runat="server" ForeColor="#333333" BorderColor="#1C5E55" BorderStyle="Double" BorderWidth="6px" BackColor="#E3EAEB">
-                <table class="auto-style4" style="padding: 4px">
+                <table class="auto-style41" style="padding: 4px">
                     <tr>
                         <td class="auto-style24">
                             Add course</td>
-                        <td class="auto-style27">
+                        <td class="auto-style38">
                             <asp:Label ID="AddCourseMessage" runat="server" Font-Bold="True" ForeColor="#1C5E55"></asp:Label>
                         </td>
                     </tr>
                     <tr>
                         <td class="auto-style28">Course Name:</td>
-                        <td class="auto-style29">
+                        <td class="auto-style39">
                             <asp:TextBox ID="cname" runat="server" Width="200px" MaxLength="10"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
                         <td class="auto-style28">Credit Hours:</td>
-                        <td class="auto-style29">
+                        <td class="auto-style39">
                             <asp:TextBox ID="credithours" runat="server" Width="200px" MaxLength="10"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
                         <td class="auto-style9">Price:</td>
-                        <td>
+                        <td class="auto-style40">
                             <asp:TextBox ID="price" runat="server" Width="200px" MaxLength="10"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
                         <td class="auto-style9">&nbsp;</td>
-                        <td>
+                        <td class="auto-style40">
                             <asp:Button ID="addCourse" runat="server" Text="Add" Width="200px" BorderStyle="Groove" OnClick="AddCourseClick" />
+                        </td>
+                    </tr>
+                      <tr>
+                        <td class="auto-style9">&nbsp;</td>
+                        <td class="auto-style40">
+                            <asp:Button ID="addMoreDetailsButton" runat="server" Text="Add More Details" Width="200px" BorderStyle="Groove" OnClick="addMoreDetailsClick" />
                         </td>
                     </tr>
                 </table>

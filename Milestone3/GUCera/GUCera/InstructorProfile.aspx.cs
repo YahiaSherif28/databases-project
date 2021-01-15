@@ -230,5 +230,10 @@ namespace GUCera
             Session["user"] = null;
             Response.Redirect("Login.aspx");
         }
+
+        protected void addMoreDetailsClick(object sender, EventArgs e)
+        {
+            Response.Redirect("InstructorCourses.aspx");
+        }
     }
 }

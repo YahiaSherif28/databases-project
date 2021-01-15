@@ -73,6 +73,7 @@
     <Content Include="Assignments.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="CreatePromoCode.aspx" />
+    <Content Include="InstructorCourses.aspx" />
     <Content Include="InstructorProfile.aspx" />
     <Content Include="InstructorRegister.aspx" />
     <Content Include="ListAllCourses.aspx" />
@@ -124,6 +125,13 @@
     </Compile>
     <Compile Include="CreatePromoCode.aspx.designer.cs">
       <DependentUpon>CreatePromoCode.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InstructorCourses.aspx.cs">
+      <DependentUpon>InstructorCourses.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InstructorCourses.aspx.designer.cs">
+      <DependentUpon>InstructorCourses.aspx</DependentUpon>
     </Compile>
     <Compile Include="InstructorProfile.aspx.cs">
       <DependentUpon>InstructorProfile.aspx</DependentUpon>
