@@ -801,10 +801,11 @@ end
 
 go
 
-CREATE PROC newAvailableCourses
+create PROC newAvailableCourses
 @sid int
 AS
 SELECT id, name FROM Course 
+where Course.accepted = '1'
 except
 Select C.id, C.name from Course C inner join StudentTakeCourse STC on C.id = STC.cid
 where STC.sid = @sid;
