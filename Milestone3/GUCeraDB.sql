@@ -520,6 +520,7 @@ Create Proc InstructorIssueCertificateToStudent
 @insId int,
 @issueDate datetime 
 As
+execute calculateFinalGrade @cid , @sid, @insId
 if(
 exists(select * from StudentTakeCourse where sid=@sid and grade >2.0 and cid=@cid))
 Insert into StudentCertifyCourse values (@sid,@cid,@issueDate)
