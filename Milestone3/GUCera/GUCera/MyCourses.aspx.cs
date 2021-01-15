@@ -146,7 +146,7 @@ namespace GUCera
                 while (rdr.Read())
                 {
                     String date;
-                    if (rdr.IsDBNull(rdr.GetOrdinal("weight")))
+                    if (rdr.IsDBNull(rdr.GetOrdinal("IssueDate")))
                     {
                         date = "NULL";
                     }
